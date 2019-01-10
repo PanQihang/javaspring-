@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.qlq.mapper.UserMapper">
+	<select id="findAll" resultType="User">
+		select * from user
+	</select>
+	<select id="findAll1" resultType="Usertype">
+		select * from usertype
+	</select>
+	<select id="findAllRegister" resultType="Register">
+		select * from register
+	</select>
+	<insert id="insertRegister" parameterType="Register">
+	    insert into register(name,sex,birthdate,type,doctor,fee,time) 
+	    values(#{name},#{sex},#{birthdate},#{type},#{doctor},#{fee},#{time})
+	</insert>
+	<delete id="deleteRegister" parameterType="int">
+	    delete from register where id = #{id}
+	</delete>
+	<update id="updateRegister" parameterType="Register">
+	    update register set name=#{name},sex=#{sex},birthdate=#{birthdate},type=#{type},doctor=#{doctor},
+	    fee=#{fee},time=#{time} where id = #{id}
+	</update>
+	<select id="findDoctor" resultType="Doctor" parameterType="String">
+	    select * from doctor where type = #{type}
+	</select>
+	<select id="findallDoctor" resultType="Doctor">
+	    select * from doctor
+	</select>
+	<delete id="deleteDoctor" parameterType="int">
+	    delete from doctor where id = #{id}
+	</delete>
+	<update id="updateDoctor" parameterType="Doctor">
+	    update doctor set doctor=#{doctor},type=#{type} where id = #{id}
+	</update>
+	<insert id="insertDoctor" parameterType="Doctor">
+	    insert into doctor(doctor,type) values(#{doctor},#{type})
+	</insert>
+</mapper>
